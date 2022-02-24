@@ -52,4 +52,13 @@ int main()
     sortList(sum);
 
     PrintList(sum);
+
+    std::list<std::string> fruits = {"apple", "banana", "cherry", "kiwi", "mango"};
+
+    PrintList(fruits);
+
+    filterList(fruits, [](auto n) { return n.starts_with("a");  });
+
+    PrintList(fruits);
+
 }
