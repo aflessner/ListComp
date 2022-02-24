@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <map>
 
 void clearList(auto& list)
 {
@@ -42,4 +43,17 @@ void filterList(auto& list, auto lambda)
         }
     }
     list = outputList;
+}
+
+void addToMapIfMatch(auto& outputMap, auto& inputMap, auto lambda)
+{
+    for (auto it = inputMap.cbegin(); it != inputMap.cend(); ++it)
+    {
+        auto key = (*it).first;
+        auto value = (*it).second;
+        if (lambda(key, value))
+        {
+            outputMap.emplace(key, value);
+        }
+    }
 }

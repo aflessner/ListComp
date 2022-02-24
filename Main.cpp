@@ -22,6 +22,18 @@ void PrintList(auto l)
     std::cout << "};\n";
 }
 
+void PrintMap(auto l)
+{
+    std::cout << "l = { ";
+    for (auto it = l.cbegin(); it != l.cend(); ++it)
+    {
+        auto key = (*it).first;
+        auto value = (*it).second;
+        std::cout << "(" << key << " | " << value << "), ";
+    }
+    std::cout << "};\n";
+}
+
 int main()
 {
     srand((unsigned int)time(NULL));
@@ -61,4 +73,14 @@ int main()
 
     PrintList(fruits);
 
+    std::map<int, std::string> input_dict, output_dict;
+
+    input_dict.emplace(5, "blah");
+    input_dict.emplace(6, "kyle");
+
+    PrintMap(input_dict);
+
+    addToMapIfMatch(output_dict, input_dict, [](auto k, auto v) { return !v.starts_with("kyle");  });
+
+    PrintMap(output_dict);
 }
