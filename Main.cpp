@@ -34,9 +34,10 @@ void PrintMap(auto l)
     std::cout << "};\n";
 }
 
-void DoSomething(auto a)
+bool DoSomething(auto a)
 {
     std::cout << "DoSomething " << a << "\n";
+    return true;
 }
 
 int main()
@@ -85,7 +86,7 @@ int main()
 
     PrintMap(input_dict);
 
-    addToMapIfMatch(output_dict, input_dict, [](auto k, auto v) { bool b = !v.starts_with("kyle");  if (b) { DoSomething(k); } return b; });
+    addToMapIfMatch(output_dict, input_dict, [](auto k, auto v) { return !v.starts_with("kyle") && DoSomething(k); });
 
     PrintMap(output_dict);
 }
