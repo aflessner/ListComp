@@ -34,6 +34,11 @@ void PrintMap(auto l)
     std::cout << "};\n";
 }
 
+void DoSomething(auto a)
+{
+    std::cout << "DoSomething " << a << "\n";
+}
+
 int main()
 {
     srand((unsigned int)time(NULL));
@@ -80,7 +85,7 @@ int main()
 
     PrintMap(input_dict);
 
-    addToMapIfMatch(output_dict, input_dict, [](auto k, auto v) { return !v.starts_with("kyle");  });
+    addToMapIfMatch(output_dict, input_dict, [](auto k, auto v) { bool b = !v.starts_with("kyle");  if (b) { DoSomething(k); } return b; });
 
     PrintMap(output_dict);
 }
