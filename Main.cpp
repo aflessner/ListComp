@@ -116,7 +116,7 @@ int main()
 
     PrintMap(input_dict2);
 
-    addToMapIfMatch(output_dict2, input_dict2, [](auto&k, auto& v) { return isOdd(k) && modifyKey(k); });
+    addToMapIfMatch(output_dict2, input_dict2, [](auto& k, auto& v) { bool bIsOdd = isOdd(k); if (bIsOdd) { modifyKey(k); } return bIsOdd; });
 
     PrintMap(output_dict2);
 
