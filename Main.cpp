@@ -12,6 +12,16 @@ void PopulateRandomList(auto& l)
     }
 }
 
+void PopulateMap(auto& l)
+{
+    char c = 'a';
+    for (unsigned int i = 1; i <= 26; i++)
+    {
+        l.emplace(i, c);
+        c++;
+    }
+}
+
 void PrintList(auto l)
 {
     std::cout << "l = { ";
@@ -86,7 +96,19 @@ int main()
 
     PrintMap(input_dict);
 
-    addToMapIfMatch(output_dict, input_dict, [](auto k, auto v) { return !v.starts_with("kyle") && DoSomething(k); });
+    addToMapIfMatch(output_dict, input_dict, [](auto& k, auto& v) { return !v.starts_with("kyle") && DoSomething(k); });
 
     PrintMap(output_dict);
+
+    std::map<int, char> input_dict2, output_dict2;
+
+    PopulateMap(input_dict2);
+
+    PrintMap(input_dict2);
+
+    addToMapIfMatch(output_dict2, input_dict2, [](auto&k, auto& v) { if (k % 2 != 0) {k = k * 4; return true; } return false;});
+
+    PrintMap(output_dict2);
+
+    return 0;
 }
