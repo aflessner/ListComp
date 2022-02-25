@@ -53,6 +53,13 @@ bool isOdd(const auto n)
     return n % 2 != 0;
 }
 
+bool modifyKey(auto& k)
+{
+    k *= 4;
+    return true;
+}
+
+
 int main()
 {
     srand((unsigned int)time(NULL));
@@ -109,7 +116,7 @@ int main()
 
     PrintMap(input_dict2);
 
-    addToMapIfMatch(output_dict2, input_dict2, [](auto&k, auto& v) { if (isOdd(k)) { k = k * 4; return true; } return false; });
+    addToMapIfMatch(output_dict2, input_dict2, [](auto&k, auto& v) { return isOdd(k) && modifyKey(k); });
 
     PrintMap(output_dict2);
 
