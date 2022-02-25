@@ -32,13 +32,11 @@ void PrintList(auto l)
     std::cout << "};\n";
 }
 
-void PrintMap(auto l)
+void PrintMap(auto m)
 {
     std::cout << "l = { ";
-    for (auto it = l.cbegin(); it != l.cend(); ++it)
+    for (auto const& [key, value] : m)
     {
-        auto key = (*it).first;
-        auto value = (*it).second;
         std::cout << "(" << key << " | " << value << "), ";
     }
     std::cout << "};\n";

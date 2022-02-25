@@ -47,13 +47,13 @@ void filterList(auto& list, auto lambda)
 
 void addToMapIfMatch(auto& outputMap, auto& inputMap, auto lambda)
 {
-    for (auto it = inputMap.cbegin(); it != inputMap.cend(); ++it)
+    for (auto const& [constKey, constValue] : inputMap)
     {
-        auto key = (*it).first;
-        auto value = (*it).second;
-        if (lambda(key, value))
+        auto mutableKey = constKey;
+        auto mutableValue = constValue;
+        if (lambda(mutableKey, mutableValue))
         {
-            outputMap.emplace(key, value);
+            outputMap.emplace(mutableKey, mutableValue);
         }
     }
 }
